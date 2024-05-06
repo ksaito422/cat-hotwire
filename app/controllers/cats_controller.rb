@@ -44,17 +44,17 @@ class CatsController < ApplicationController
   # DELETE /cats/1
   def destroy
     @cat.destroy!
-    redirect_to cats_url, notice: "ねこを削除しました。", status: :see_other
+    flash.now.notice = "ねこを削除しました。"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cat
-      @cat = Cat.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cat
+    @cat = Cat.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def cat_params
-      params.require(:cat).permit(:name, :age)
-    end
+  # Only allow a list of trusted parameters through.
+  def cat_params
+    params.require(:cat).permit(:name, :age)
+  end
 end
